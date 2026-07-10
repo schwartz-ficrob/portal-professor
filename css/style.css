@@ -1056,3 +1056,77 @@ footer{
     margin:12px 0;
 
 }
+
+/* ===========================
+   PÁGINA DAS MATÉRIAS
+=========================== */
+
+.categoria-material{
+
+background:#fff;
+
+padding:25px;
+
+margin:30px auto;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+max-width:900px;
+
+}
+
+.categoria-material h2{
+
+color:#1d4ed8;
+
+margin-bottom:20px;
+
+}
+
+.arquivo{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:12px 0;
+
+border-bottom:1px solid #ddd;
+
+}
+
+.arquivo:last-child{
+
+border-bottom:none;
+
+}
+
+.arquivo a{
+
+background:#2563eb;
+
+color:white;
+
+padding:8px 18px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.arquivo a:hover{
+
+background:#1d4ed8;
+
+transform:scale(1.05);
+
+}
