@@ -22,7 +22,7 @@ const MATERIAIS = [
   { serie: "1", conteudo: "Cinemática", tipo: "apostila", titulo: "Resumo de Cinemática", link: "pdf/1ano/resumo-cinematica.pdf" },
 
   // ---------- 2º ANO ----------
-  // (ainda sem materiais)
+  { serie: "2", conteudo: "Termologia", tipo: "apostila", titulo: "Prova", link: "pdf/1ano/prova1-termologia.pdf" },
 
   // ---------- 3º ANO ----------
   { serie: "3", conteudo: "Eletrodinâmica", tipo: "exercicio", titulo: "Lista – Tema 24", link: "pdf/3ano/eletrodinamica/LISTA.TEMA24.ADC.3ANO.pdf" },
