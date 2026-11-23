@@ -1,0 +1,211 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --papel: #F6F8FB;
+  --grade: #DCE4F2;
+  --tinta: #1D3E9E;
+  --tinta-escura: #142C73;
+  --grafite: #232833;
+  --suave: #5E6675;
+  --linha: #D5DCE8;
+  --marca: #FFE45C;
+  --verde: #1E8558;
+  --vermelho: #D1362F;
+
+  --titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --texto: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --largura: 720px;
+}
+
+html { scroll-padding-top: 90px; }
+
+body {
+  font-family: var(--texto);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--grafite);
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(var(--grade) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size: 24px 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; border-radius: 6px; }
+
+/* ---------- topo ---------- */
+.topo {
+  width: 100%; max-width: var(--largura); margin: 0 auto;
+  padding: 48px 20px 24px;
+  display: grid; grid-template-columns: 1fr 220px; align-items: end; gap: 16px;
+}
+.topo h1 {
+  font-family: var(--titulo); font-weight: 800;
+  font-size: clamp(2.1rem, 6.5vw, 3.4rem);
+  line-height: 1.02; letter-spacing: -0.02em; color: var(--tinta);
+}
+.topo p { margin-top: 12px; color: var(--suave); max-width: 34ch; }
+
+.trajetoria { width: 100%; overflow: visible; }
+.trajetoria .eixo { stroke: var(--grafite); stroke-width: 1.5; opacity: .35; }
+.trajetoria .curva {
+  fill: none; stroke: var(--tinta); stroke-width: 2.5; stroke-dasharray: 6 7;
+}
+.trajetoria .vetor { stroke: var(--vermelho); stroke-width: 2.5; stroke-linecap: round; }
+.trajetoria .bola { fill: var(--marca); stroke: var(--grafite); stroke-width: 2; }
+
+/* ---------- barra das séries (fica presa no topo) ---------- */
+.barra {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px;
+  transition: background-color .2s, box-shadow .2s;
+}
+.barra.grudada { background: rgba(246, 248, 251, .94); box-shadow: 0 1px 0 var(--linha); backdrop-filter: blur(6px); }
+
+.series {
+  max-width: calc(var(--largura) - 40px); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.series button {
+  font: inherit; cursor: pointer; text-align: left;
+  background: #fff; color: var(--grafite);
+  border: 2px solid var(--grafite); border-radius: 14px;
+  padding: 10px 14px;
+  display: flex; flex-direction: column;
+  transition: transform .12s, background-color .12s;
+}
+.series button span { font-family: var(--titulo); font-weight: 800; font-size: 1.35rem; line-height: 1.1; }
+.series button small { font-size: .82rem; color: var(--suave); }
+.series button:hover { transform: translateY(-2px); }
+.series button.ativo {
+  background: var(--marca);
+  box-shadow: 4px 4px 0 var(--grafite);
+  transform: translate(-2px, -2px);
+}
+.series button.ativo small { color: var(--grafite); }
+
+/* ---------- conteúdo ---------- */
+main { width: 100%; max-width: var(--largura); margin: 0 auto; padding: 8px 20px 48px; flex: 1; }
+
+.filtros { display: flex; flex-direction: column; gap: 12px; margin: 14px 0 22px; }
+
+.busca {
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border: 1.5px solid var(--linha); border-radius: 12px; padding: 0 14px;
+}
+.busca:focus-within { border-color: var(--tinta); }
+.busca svg { width: 20px; height: 20px; fill: none; stroke: var(--suave); stroke-width: 2; stroke-linecap: round; flex: none; }
+.busca input { flex: 1; border: 0; outline: 0; background: none; font: inherit; padding: 12px 0; color: var(--grafite); }
+
+.tipos { display: flex; flex-wrap: wrap; gap: 8px; }
+.tipos button {
+  font: inherit; font-size: .95rem; cursor: pointer; white-space: nowrap;
+  background: #fff; color: var(--grafite);
+  border: 1.5px solid var(--linha); border-radius: 999px; padding: 6px 14px;
+}
+.tipos button::after { content: attr(data-n); margin-left: 6px; color: var(--suave); font-size: .85em; }
+.tipos button.ativo { background: var(--grafite); border-color: var(--grafite); color: #fff; }
+.tipos button.ativo::after { color: #fff; opacity: .7; }
+
+.aviso {
+  background: var(--marca); color: var(--grafite);
+  padding: 12px 16px; border-radius: 4px 14px 14px 14px;
+  font-weight: 700; margin-bottom: 26px;
+  transform: rotate(-0.4deg);
+}
+
+/* seções de conteúdo, como capítulos do caderno */
+.conteudo { margin-bottom: 30px; }
+.conteudo h2 {
+  font-family: var(--titulo); font-weight: 600; font-size: 1.45rem; color: var(--tinta);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.conteudo h2::after { content: ""; flex: 1; height: 2px; background: var(--tinta); opacity: .25; }
+
+.conteudo ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+.item {
+  --cor: var(--tinta);
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; color: inherit; text-decoration: none;
+  border: 1.5px solid var(--linha); border-left: 6px solid var(--cor);
+  border-radius: 10px; padding: 12px 14px;
+  transition: border-color .12s, transform .12s;
+}
+.item.tipo-exercicio { --cor: var(--verde); }
+.item.tipo-video { --cor: var(--vermelho); }
+.item:hover { border-color: var(--cor); transform: translateX(3px); }
+
+.icone {
+  width: 40px; height: 40px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--cor) 12%, #fff);
+}
+.icone svg { width: 22px; height: 22px; fill: none; stroke: var(--cor); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.tipo-video .icone svg { fill: var(--cor); }
+
+.texto { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.texto strong { font-weight: 700; overflow-wrap: anywhere; }
+.texto small { font-size: .85rem; color: var(--suave); }
+
+.acao {
+  flex: none; font-weight: 700; font-size: .92rem; color: var(--cor);
+  border: 1.5px solid currentColor; border-radius: 999px; padding: 5px 12px;
+}
+.item:hover .acao { background: var(--cor); color: #fff; border-color: var(--cor); }
+
+.vazio {
+  text-align: center; padding: 40px 20px; background: #fff;
+  border: 2px dashed var(--linha); border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.vazio span { color: var(--suave); }
+.vazio button {
+  margin-top: 10px; font: inherit; font-weight: 700; cursor: pointer;
+  background: var(--tinta); color: #fff; border: 0; border-radius: 999px; padding: 8px 18px;
+}
+
+footer { text-align: center; color: var(--suave); font-size: .85rem; padding: 24px; }
+
+/* ---------- player de vídeo ---------- */
+dialog {
+  border: 0; border-radius: 16px; padding: 0; width: min(920px, 94vw);
+  margin: auto; background: var(--grafite); color: #fff; overflow: hidden;
+}
+dialog::backdrop { background: rgba(20, 24, 33, .75); }
+.player-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; }
+.player-topo button {
+  font: inherit; font-weight: 700; cursor: pointer;
+  background: #fff; color: var(--grafite); border: 0; border-radius: 999px; padding: 6px 14px;
+}
+.player-video { aspect-ratio: 16 / 9; background: #000; }
+.player-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---------- celular ---------- */
+@media (max-width: 600px) {
+  body { font-size: 1rem; }
+  .topo { grid-template-columns: 1fr 88px; align-items: start; padding-top: 28px; gap: 8px; }
+  .topo-texto { display: contents; }
+  .topo h1 { grid-column: 1; grid-row: 1; }
+  .topo p { grid-column: 1 / -1; grid-row: 2; margin-top: 4px; }
+  .trajetoria { grid-column: 2; grid-row: 1; margin-top: 8px; }
+  .tipos { gap: 6px; }
+  .tipos button { padding: 5px 9px; font-size: .86rem; }
+  .tipos button::after { margin-left: 4px; }
+  .barra { padding: 8px 14px; }
+  main { padding: 6px 14px 40px; }
+  .series { gap: 8px; }
+  .series button { padding: 8px 10px; border-radius: 12px; }
+  .series button span { font-size: 1.15rem; }
+  .series button small { font-size: .75rem; }
+  .item { padding: 12px; gap: 12px; }
+  .icone { width: 36px; height: 36px; }
+  .acao { padding: 4px 10px; font-size: .85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

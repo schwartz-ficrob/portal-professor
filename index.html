@@ -1,160 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Portal do Professor Leonardo</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1D3E9E">
+  <title>Física com o Prof. Leonardo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header>
-        <nav class="navbar">
+  <header class="topo">
+    <div class="topo-texto">
+      <h1>Física com o Prof.&nbsp;Leonardo</h1>
+      <p>Apostilas, listas e vídeos das aulas. Escolha sua série para começar.</p>
+    </div>
+    <svg class="trajetoria" id="trajetoria" viewBox="0 0 320 170" aria-hidden="true">
+      <defs>
+        <clipPath id="revelar">
+          <rect x="0" y="-80" width="0" height="260">
+            <animate attributeName="width" from="0" to="320" dur="1.4s" begin="0.2s" fill="freeze" calcMode="spline" keySplines=".3 .1 .6 1"/>
+          </rect>
+        </clipPath>
+      </defs>
+      <line class="eixo" x1="16" y1="150" x2="312" y2="150"/>
+      <line class="eixo" x1="16" y1="150" x2="16" y2="12"/>
+      <path class="curva" clip-path="url(#revelar)" d="M16 150 Q 156 -66 296 150"/>
+      <line class="vetor" x1="16" y1="150" x2="62" y2="90"/>
+      <circle class="bola" r="7" cx="0" cy="0">
+        <animateMotion dur="1.4s" begin="0.2s" fill="freeze" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".3 .1 .6 1" path="M16 150 Q 156 -66 296 150"/>
+      </circle>
+    </svg>
+  </header>
 
-            <h2 class="logo">⚛ Prof. Leonardo</h2>
+  <div class="barra" id="barra">
+    <nav class="series" aria-label="Série">
+      <button data-serie="1"><span>1º ano</span><small></small></button>
+      <button data-serie="2"><span>2º ano</span><small></small></button>
+      <button data-serie="3"><span>3º ano</span><small></small></button>
+    </nav>
+  </div>
 
-           <ul class="menu">
-
-<li><a href="index.html">Início</a></li>
-
-<li><a href="turmas.html">Turmas</a></li>
-
-<li><a href="materiais.html">Materiais</a></li>
-
-<li><a href="exercicios.html">Exercícios</a></li>
-
-<li><a href="contato.html">Contato</a></li>
-
-</ul>
-
-        </nav>
-    </header>
-
-    <section class="hero">
-
-    <div class="hero-texto">
-
-        <span class="destaque">
-            Portal de Estudos de Física
-        </span>
-
-        <h1>
-            Aprenda Física de forma simples e objetiva.
-        </h1>
-
-        <p>
-            Materiais gratuitos, listas de exercícios, resumos e conteúdos
-            voltados para o Ensino Médio, ENEM e Vestibulares.
-        </p>
-
-        <div class="hero-botoes">
-
-            <a href="materiais.html" class="botao">
-                📚 Explorar Materiais
-            </a>
-
-            <a href="turmas.html" class="botao-secundario">
-                👥 Minhas Turmas
-            </a>
-
-        </div>
-
+  <main>
+    <div class="filtros">
+      <label class="busca">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" id="busca" placeholder="Buscar por nome ou conteúdo" aria-label="Buscar material">
+      </label>
+      <div class="tipos" role="group" aria-label="Tipo de material">
+        <button data-tipo="">Tudo</button>
+        <button data-tipo="apostila">Apostilas</button>
+        <button data-tipo="exercicio">Exercícios</button>
+        <button data-tipo="video">Vídeos</button>
+      </div>
     </div>
 
-</section>
+    <p id="aviso" class="aviso" hidden></p>
+    <div id="lista" aria-live="polite"></div>
+  </main>
 
-    <section class="cards">
+  <footer>Prof. Leonardo · Física · 2026</footer>
 
-        <section class="materiais">
-
-    <h2>Materiais de Física</h2>
-    <p class="subtitulo">
-        Escolha um conteúdo para estudar.
-    </p>
-
-    <div class="materiais-grid">
-
-        <div class="material">
-    <h3>Cinemática</h3>
-    <p>Movimento uniforme, movimento variado e gráficos.</p>
-    <a href="paginas/cinematica.html">Ver conteúdo</a>
-</div>
-
-        <div class="material">
-            <h3>Leis de Newton</h3>
-            <p>Forças, aplicações e exercícios resolvidos.</p>
-            <a href="#">Ver conteúdo</a>
-        </div>
-
-        <div class="material">
-            <h3>Trabalho e Energia</h3>
-            <p>Energia cinética, potencial e conservação.</p>
-            <a href="#">Ver conteúdo</a>
-        </div>
-
-        <div class="material">
-            <h3>Gravitação</h3>
-            <p>Lei da gravitação universal e satélites.</p>
-            <a href="#">Ver conteúdo</a>
-        </div>
-
-        <div class="material">
-            <h3>Termologia</h3>
-            <p>Calor, temperatura e dilatação térmica.</p>
-            <a href="#">Ver conteúdo</a>
-        </div>
-
-        <div class="material">
-            <h3>Óptica</h3>
-            <p>Espelhos, lentes e refração da luz.</p>
-            <a href="#">Ver conteúdo</a>
-        </div>
-
+  <dialog id="player" aria-labelledby="player-titulo">
+    <div class="player-topo">
+      <strong id="player-titulo"></strong>
+      <button id="fechar">Fechar</button>
     </div>
+    <div class="player-video"><iframe id="player-frame" title="Vídeo da aula" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
+  </dialog>
 
-</section>
-
-    <div class="card">
-        <h2>⚛ Materiais</h2>
-        <p>Resumos, apostilas e conteúdos de Física para estudo.</p>
-    </div>
-
-    <div class="card">
-        <h2>📝 Exercícios</h2>
-        <p>Listas de questões para praticar e revisar os conteúdos.</p>
-    </div>
-
-
-</section>
-
-    <section class="sobre">
-
-        <h2>Sobre o Professor</h2>
-
-        <p>
-            Sou professor de Física formado pelo Instituto Federal do Paraná (IFPR).
-            Criei este portal para compartilhar materiais didáticos, listas de exercícios
-            e conteúdos voltados ao Ensino Médio, ENEM e vestibulares.
-        </p>
-
-    </section>
-
-    <footer>
-
-        <p>© 2026 • Portal do Professor Leonardo</p>
-
-    </footer>
-
-    <script src="js/script.js"></script>
-
+  <script src="materiais.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>
-
